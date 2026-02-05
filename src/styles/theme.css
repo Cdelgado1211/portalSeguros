@@ -6,7 +6,8 @@
   --atlas-secondary: #73513b; /* café barra superior */
   --atlas-accent: #f7b650;
 
-  --atlas-surface: #f8f4f0;
+  /* Fondo general ligeramente crema para que se note frente al blanco del card */
+  --atlas-surface: #f3e5d8;
   --atlas-surface-alt: #ffffff;
   --atlas-border: #e0d4c7;
 

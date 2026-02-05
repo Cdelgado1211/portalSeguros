@@ -11,18 +11,18 @@ export const AppLayout = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-surface">
-      <header className="sticky top-0 z-20 flex items-center justify-between border-b border-border bg-surface-alt px-4 py-3 shadow-sm">
+      <header className="sticky top-0 z-20 flex items-center justify-between border-b border-secondary/20 bg-secondary px-4 py-3 shadow-sm text-white">
         <div className="flex flex-col">
-          <span className="text-xs uppercase tracking-wide text-slate-500">
+          <span className="text-xs uppercase tracking-wide text-primary-muted">
             Emisión de pólizas
           </span>
-          <span className="text-base font-semibold text-secondary">Atlas Emisión</span>
+          <span className="text-base font-semibold text-white">Atlas Emisión</span>
         </div>
         <div className="flex items-center gap-2">
           {user && (
             <div className="flex flex-col text-right">
-              <span className="text-xs text-slate-500">Agente</span>
-              <span className="text-sm font-medium text-slate-800">{user.name}</span>
+              <span className="text-xs text-primary-muted/90">Agente</span>
+              <span className="text-sm font-medium text-white">{user.name}</span>
             </div>
           )}
           <Button
@@ -55,4 +55,3 @@ export const AppLayout = () => {
     </div>
   );
 };
-

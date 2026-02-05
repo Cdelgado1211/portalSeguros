@@ -49,10 +49,11 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-surface px-4">
+    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-secondary via-secondary to-primary px-4">
       <div className="w-full max-w-sm">
-        <Card>
-          <div className="mb-4 text-center">
+        <Card className="relative overflow-hidden">
+          <div className="absolute inset-x-0 top-0 h-1.5 bg-primary" />
+          <div className="mb-4 pt-2 text-center">
             <h1 className="text-lg font-semibold text-secondary">Atlas Emisión</h1>
             <p className="mt-1 text-xs text-slate-500">
               Acceso para agentes – emisión de pólizas
@@ -100,4 +101,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
