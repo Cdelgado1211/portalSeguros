@@ -12,11 +12,18 @@ export const AppLayout = () => {
   return (
     <div className="flex min-h-screen flex-col bg-surface">
       <header className="sticky top-0 z-20 flex items-center justify-between border-b border-secondary/20 bg-secondary px-4 py-3 shadow-sm text-white">
-        <div className="flex flex-col">
-          <span className="text-xs uppercase tracking-wide text-primary-muted">
-            Emisión de pólizas
-          </span>
-          <span className="text-base font-semibold text-white">Atlas Emisión</span>
+        <div className="flex items-center gap-2">
+          <img
+            src="https://images.email-platform.com/segurosatlas/logo-web2-blanco-final(1).png"
+            alt="Seguros Atlas"
+            className="h-6 w-auto"
+          />
+          <div className="flex flex-col">
+            <span className="text-[10px] uppercase tracking-wide text-primary-muted">
+              Emisión de pólizas
+            </span>
+            <span className="text-base font-semibold text-white">Atlas Emisión</span>
+          </div>
         </div>
         <div className="flex items-center gap-2">
           {user && (

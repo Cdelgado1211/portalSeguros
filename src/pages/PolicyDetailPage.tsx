@@ -67,23 +67,34 @@ const PolicyDetailPage = () => {
           </div>
           <div>
             <p className="text-[11px] font-medium text-slate-700">Correo de confirmación</p>
-            <p>{policy.emailSent ? 'Enviado' : 'Pendiente'}</p>
+            <p>
+              {policy.emailSent ? 'Enviado' : 'Pendiente'}
+              {policy.notificationEmail && ` a ${policy.notificationEmail}`}
+            </p>
           </div>
         </div>
       </Card>
 
       <Card className="space-y-2">
         <p className="text-xs text-slate-600">
-          Se enviará un correo de confirmación al asegurado con el PDF de la póliza adjunto. Desde
-          aquí también puedes consultar el documento.
+          Se enviará un correo de confirmación al asegurado con el PDF de la póliza adjunto
+          {policy.notificationEmail ? ` al correo ${policy.notificationEmail}` : ''}. Desde aquí
+          también puedes consultar el documento.
         </p>
         <Button
-          as="a" // TypeScript no sabe de esto, pero es solo para estilos; se ignorará
-          href={policy.pdfUrl}
-          target="_blank"
-          rel="noreferrer"
+          type="button"
           variant="secondary"
           fullWidth
+          onClick={() => {
+            if (!policy.pdfUrl) return;
+            const link = document.createElement('a');
+            link.href = policy.pdfUrl;
+            link.download = `poliza-${policy.policyNumber}.pdf`;
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+          }}
         >
           Ver PDF de póliza
         </Button>
@@ -93,4 +104,3 @@ const PolicyDetailPage = () => {
 };
 
 export default PolicyDetailPage;
-

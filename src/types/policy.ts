@@ -8,5 +8,5 @@ export interface Policy {
   expiryDate: string;
   pdfUrl: string;
   emailSent: boolean;
+  notificationEmail?: string;
 }
-

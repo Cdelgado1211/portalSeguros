@@ -14,6 +14,7 @@ export interface LocationData {
 export interface CommonData {
   insuredName: string;
   insuredRfc?: string;
+  insuredEmail?: string;
 }
 
 export interface BoatData {
@@ -54,4 +55,3 @@ export interface IssuanceSession {
   status: 'IN_PROGRESS' | 'COMPLETED';
   policyId?: string;
 }
-

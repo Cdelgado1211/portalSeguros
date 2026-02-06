@@ -5,6 +5,7 @@ import type { Policy } from '../types/policy';
 import type { Quote } from '../types/quote';
 import type { IssuanceFormData, IssuanceSession } from '../types/issuance';
 import { delay } from '../utils/delay';
+import { createPolicyPdf } from '../utils/pdf';
 
 let issuances: IssuanceSession[] = [];
 let policies: Policy[] = [];
@@ -167,7 +168,7 @@ export const mockIssuePolicy = async (issuanceId: string): Promise<Policy> => {
   const nextYear = new Date();
   nextYear.setFullYear(today.getFullYear() + 1);
 
-  const policy: Policy = {
+  const basePolicy: Policy = {
     id: policyId,
     quoteId: quote.id,
     policyNumber,
@@ -175,8 +176,16 @@ export const mockIssuePolicy = async (issuanceId: string): Promise<Policy> => {
     insuredName: quote.customerName,
     effectiveDate: today.toISOString(),
     expiryDate: nextYear.toISOString(),
-    pdfUrl: `https://example.com/policies/${policyId}.pdf`,
-    emailSent: true
+    pdfUrl: '',
+    emailSent: true,
+    notificationEmail: issuance.data.common.insuredEmail
+  };
+
+  const pdfUrl = await createPolicyPdf(basePolicy);
+
+  const policy: Policy = {
+    ...basePolicy,
+    pdfUrl
   };
 
   policies.push(policy);
@@ -192,4 +201,3 @@ export const mockGetPolicy = async (policyId: string): Promise<Policy> => {
   }
   return policy;
 };
-

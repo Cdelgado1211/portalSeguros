@@ -66,7 +66,8 @@ const IssuanceWizardPage = () => {
 
   const [formData, setFormData] = useState<IssuanceFormData>(() => ({
     common: {
-      insuredName: quote?.customerName ?? ''
+      insuredName: quote?.customerName ?? '',
+      insuredEmail: ''
     },
     location: {
       addressLine: '',
@@ -131,6 +132,23 @@ const IssuanceWizardPage = () => {
           type: 'error',
           title: 'Completa los datos del asegurado',
           description: 'El nombre del asegurado es obligatorio.'
+        });
+        return false;
+      }
+      if (!formData.common.insuredEmail?.trim()) {
+        showToast({
+          type: 'error',
+          title: 'Captura el correo del asegurado',
+          description: 'Necesitamos un correo para enviar la confirmación.'
+        });
+        return false;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.common.insuredEmail)) {
+        showToast({
+          type: 'error',
+          title: 'Correo electrónico inválido',
+          description: 'Verifica el formato del correo del asegurado.'
         });
         return false;
       }
@@ -250,6 +268,18 @@ const IssuanceWizardPage = () => {
                   common: { ...prev.common, insuredRfc: e.target.value }
                 }))
               }
+            />
+            <Input
+              label="Correo electrónico del asegurado"
+              type="email"
+              value={formData.common.insuredEmail ?? ''}
+              onChange={(e) =>
+                setFormData((prev) => ({
+                  ...prev,
+                  common: { ...prev.common, insuredEmail: e.target.value }
+                }))
+              }
+              placeholder="nombre@cliente.com"
             />
 
             {quote.productType === 'BOATS' && (
@@ -470,6 +500,9 @@ const IssuanceWizardPage = () => {
               <p className="font-semibold text-slate-700">Asegurado</p>
               <p className="mt-0.5">{formData.common.insuredName}</p>
               {formData.common.insuredRfc && <p>RFC: {formData.common.insuredRfc}</p>}
+              {formData.common.insuredEmail && (
+                <p>Correo: {formData.common.insuredEmail}</p>
+              )}
             </div>
             <div className="rounded-2xl border border-border bg-surface p-3 text-[11px] text-slate-600">
               <p className="font-semibold text-slate-700">Ubicación</p>
@@ -572,4 +605,3 @@ const IssuanceWizardPage = () => {
 };
 
 export default IssuanceWizardPage;
-
