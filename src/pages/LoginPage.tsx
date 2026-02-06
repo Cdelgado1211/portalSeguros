@@ -51,16 +51,16 @@ const LoginPage = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-secondary via-secondary to-primary px-4">
       <div className="w-full max-w-sm">
+        <div className="mb-4 flex justify-center">
+          <img
+            src="https://images.email-platform.com/segurosatlas/logo-web2-blanco-final(1).png"
+            alt="Seguros Atlas"
+            className="h-28 w-auto drop-shadow-md"
+          />
+        </div>
         <Card className="relative overflow-hidden">
           <div className="absolute inset-x-0 top-0 h-1.5 bg-primary" />
           <div className="mb-4 pt-4 text-center">
-            <div className="mb-2 flex justify-center">
-              <img
-                src="https://images.email-platform.com/segurosatlas/logo-web2-blanco-final(1).png"
-                alt="Seguros Atlas"
-                className="h-8 w-auto"
-              />
-            </div>
             <h1 className="text-lg font-semibold text-secondary">Atlas Emisión</h1>
             <p className="mt-1 text-xs text-slate-500">
               Acceso para agentes – emisión de pólizas
